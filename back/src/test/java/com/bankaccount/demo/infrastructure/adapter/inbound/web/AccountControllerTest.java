@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 
 import com.bankaccount.demo.domain.model.Account;
+import com.bankaccount.demo.domain.port.inbound.CreateAccountUseCase;
 import com.bankaccount.demo.domain.port.inbound.DepositUseCase;
 import com.bankaccount.demo.domain.port.inbound.GetAccountByCpfUseCase;
 import com.bankaccount.demo.infrastructure.adapter.inbound.web.dto.AccountResponse;
@@ -28,7 +29,11 @@ class AccountControllerTest {
             receivedAccountId.set(id);
             receivedAmount.set(value);
         };
-        AccountController controller = new AccountController(depositUseCase, cpf -> null);
+        CreateAccountUseCase createAccountUseCase = (cpf, userId) -> {};
+        AccountController controller = new AccountController(
+            depositUseCase,
+            cpf -> null,
+            createAccountUseCase);
 
         var response = controller.deposit(accountId, new DepositRequest(amount));
 
@@ -44,7 +49,11 @@ class AccountControllerTest {
         LocalDateTime createdAt = LocalDateTime.now();
         Account account = new Account(accountId, "12345678901", new BigDecimal("75.00"), userId, createdAt);
         GetAccountByCpfUseCase getAccountByCpfUseCase = cpf -> account;
-        AccountController controller = new AccountController((id, amount) -> {}, getAccountByCpfUseCase);
+        CreateAccountUseCase createAccountUseCase = (cpf, ownerId) -> {};
+        AccountController controller = new AccountController(
+            (id, amount) -> {},
+            getAccountByCpfUseCase,
+            createAccountUseCase);
 
         var response = controller.getAccountByCpf("12345678901");
 

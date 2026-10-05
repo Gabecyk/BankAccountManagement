@@ -25,6 +25,13 @@ public class AccountPersistenceAdapter implements AccountRepositoryPort {
                 .orElse(null);
     }
 
+    @Override 
+    public Account findByUserId(UUID userId) {
+        return accountJpaRepository.findByUserId(userId)
+                .map(this::toDomain)
+                .orElse(null);
+    }
+
     @Override
     public Account findByCpf(String cpf) {
         return accountJpaRepository.findByCpf(cpf)

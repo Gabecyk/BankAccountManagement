@@ -24,6 +24,13 @@ public class Account {
         this.createdAt = createdAt;
     }
 
+    public Account(String cpf, UUID userId) {
+        this.cpf = cpf;
+        this.userId = userId;
+        this.balance = BigDecimal.ZERO;
+        this.createdAt = LocalDateTime.now();
+    }
+
     public UUID getId() {
         return id;
     }
