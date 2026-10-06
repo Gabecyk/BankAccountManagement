@@ -24,7 +24,7 @@ public class User {
         this.name = name;
         this.email = email;
         this.password = password;
-        this.account = new Account(cpf);
+        this.account = new Account(cpf, this.id);
     }
 
     public void setAccount(Account account) {

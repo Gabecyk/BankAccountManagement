@@ -32,7 +32,15 @@ public class UserPersistenceAdapter implements UserRepositoryPort {
     @Transactional(readOnly = true)
     public User findUserByAccountId(String accountId) {
         UUID id = UUID.fromString(accountId);
-        return userJpaRepository.findByAccount_Id(id)
+        return userJpaRepository.findByAccountId(id)
+                .map(this::toDomain)
+                .orElse(null);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public User findUserByEmail(String email) {
+        return userJpaRepository.findByEmail(email)
                 .map(this::toDomain)
                 .orElse(null);
     }

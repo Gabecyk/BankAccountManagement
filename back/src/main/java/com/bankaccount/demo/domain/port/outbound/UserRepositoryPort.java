@@ -5,4 +5,5 @@ import com.bankaccount.demo.domain.model.User;
 public interface UserRepositoryPort {
     User save(User user);
     User findUserByAccountId(String accountId);
+    User findUserByEmail(String email);
 }

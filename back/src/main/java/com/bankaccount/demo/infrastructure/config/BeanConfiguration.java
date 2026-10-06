@@ -6,13 +6,18 @@ import org.springframework.context.annotation.Configuration;
 import com.bankaccount.demo.domain.port.inbound.CreateAccountUseCase;
 import com.bankaccount.demo.domain.port.inbound.DepositUseCase;
 import com.bankaccount.demo.domain.port.inbound.GetAccountByCpfUseCase;
+import com.bankaccount.demo.domain.port.inbound.UserCreateUseCase;
 import com.bankaccount.demo.domain.port.outbound.AccountRepositoryPort;
+import com.bankaccount.demo.domain.port.outbound.UserRepositoryPort;
 import com.bankaccount.demo.domain.service.CreateAccountService;
+import com.bankaccount.demo.domain.service.CreateUserService;
 import com.bankaccount.demo.domain.service.DepositService;
 import com.bankaccount.demo.domain.service.GetAccountByCpfService;
 
 @Configuration
 public class BeanConfiguration {
+
+	// Account
 
 	@Bean
 	public DepositUseCase depositUseCase(AccountRepositoryPort accountRepositoryPort) {
@@ -27,5 +32,12 @@ public class BeanConfiguration {
 	@Bean 
 	public CreateAccountUseCase createAccountUseCase(AccountRepositoryPort accountRepositoryPort) {
 		return new CreateAccountService(accountRepositoryPort);
+	}
+
+	// User
+
+	@Bean 
+	public UserCreateUseCase userCreateUseCase(UserRepositoryPort userRepositoryPort) {
+		return new CreateUserService(userRepositoryPort);
 	}
 }
