@@ -5,12 +5,12 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class Transaction {
-    private UUID id;
-    private UUID accountIdreceiver;
-    private UUID accountIdsender;
-    private LocalDateTime occurredAt;
-    private BigDecimal amount;
-    private String transactionType;
+    private final UUID id;
+    private final UUID accountIdreceiver;
+    private final UUID accountIdsender;
+    private final LocalDateTime occurredAt;
+    private final BigDecimal amount;
+    private final String transactionType;
 
     public Transaction(UUID id, UUID accountIdreceiver, UUID accountIdsender, LocalDateTime occurredAt, BigDecimal amount, String transactionType) {
         this.id = id;
