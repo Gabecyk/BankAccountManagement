@@ -56,6 +56,23 @@ public class AccountPersistenceAdapter implements AccountRepositoryPort {
         return toDomain(accountJpaRepository.save(entity));
     }
 
+    @Override
+    public Account update(Account account) {
+        UUID userId = account.getUserId();
+        if (userId == null) {
+            throw new IllegalArgumentException("Account must be associated with a persisted user");
+        }
+
+        AccountJpaEntity entity = new AccountJpaEntity(
+                account.getId(),
+                account.getCpf(),
+                account.getBalance(),
+            account.getCreatedAt());
+        entity.setUser(userJpaRepository.getReferenceById(userId));
+
+        return toDomain(accountJpaRepository.save(entity));
+    }
+
     private Account toDomain(AccountJpaEntity entity) {
         return new Account(
             entity.getId(),

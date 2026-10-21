@@ -69,4 +69,14 @@ public class Account {
         }
         this.balance = this.balance.add(amount);
     }
+
+    public void transfer(BigDecimal amount) {
+        if (amount.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("Transfer amount must be positive");
+        }
+        if (this.balance.compareTo(amount) < 0) {
+            throw new IllegalArgumentException("Insufficient balance for transfer");
+        }
+        this.balance = this.balance.subtract(amount);
+    }
 }

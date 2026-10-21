@@ -8,6 +8,7 @@ import com.bankaccount.demo.domain.model.Account;
 import com.bankaccount.demo.domain.port.inbound.DepositUseCase;
 import com.bankaccount.demo.domain.port.outbound.AccountRepositoryPort;
 
+//Deposit just to increase the balance of an account.
 public class DepositService implements DepositUseCase {
 
     private final AccountRepositoryPort repositoryPort;

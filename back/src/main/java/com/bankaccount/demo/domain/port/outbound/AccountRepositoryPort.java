@@ -9,4 +9,5 @@ public interface AccountRepositoryPort { // implemented in AccountRepositoryAdap
     Account findByUserId(UUID userId);
     Account findByCpf(String cpf);
     Account save(Account account);
+    Account update(Account account);
 }
