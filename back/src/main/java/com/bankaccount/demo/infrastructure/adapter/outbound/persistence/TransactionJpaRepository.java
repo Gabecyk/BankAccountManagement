@@ -6,6 +6,5 @@ import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TransactionJpaRepository extends JpaRepository<TransactionJpaEntity, UUID> {
-    List<TransactionJpaEntity> findBySenderAccount_Id(UUID accountId);
-    List<TransactionJpaEntity> findByReceiverAccount_Id(UUID accountId);
+    List<TransactionJpaEntity> findBySenderAccount_IdOrReceiverAccount_Id(UUID senderAccountId, UUID receiverAccountId);
 }

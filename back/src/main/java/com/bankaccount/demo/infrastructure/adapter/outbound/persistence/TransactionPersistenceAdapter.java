@@ -42,16 +42,9 @@ public class TransactionPersistenceAdapter implements TransactionRepositoryPort 
 
     @Override
     @Transactional(readOnly = true)
-    public List<Transaction> findBySenderAccountId(UUID accountId) {
-        return transactionJpaRepository.findBySenderAccount_Id(accountId).stream()
-                .map(this::toDomain)
-                .toList();
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public List<Transaction> findByReceiverAccountId(UUID accountId) {
-        return transactionJpaRepository.findByReceiverAccount_Id(accountId).stream()
+    public List<Transaction> getTransactionsHistory(UUID accountId) {
+        return transactionJpaRepository
+                .findBySenderAccount_IdOrReceiverAccount_Id(accountId, accountId).stream()
                 .map(this::toDomain)
                 .toList();
     }

@@ -7,6 +7,5 @@ import com.bankaccount.demo.domain.model.Transaction;
 
 public interface TransactionRepositoryPort {
     Transaction save(Transaction transaction);
-    List<Transaction> findBySenderAccountId(UUID accountId);
-    List<Transaction> findByReceiverAccountId(UUID accountId);
+    List<Transaction> getTransactionsHistory(UUID accountId);
 }
